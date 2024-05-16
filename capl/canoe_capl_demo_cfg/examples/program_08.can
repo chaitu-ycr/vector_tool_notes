@@ -1,0 +1,44 @@
+/*@!Encoding:1252*/
+// How to capture a graphic window screenshot and insert it in a report ?
+
+void MainTest ()
+{
+  test_case_001();
+}
+
+testcase test_case_001()
+{
+  // create diagnostic request
+  diagRequest Door.DefaultSession_Start diag_req;
+  // send diagnostic request
+  diagSendRequest(diag_req);
+  // wait for diagnostic request response
+  if(testWaitForDiagResponse(diag_req, 1000))
+  {
+    // check if valid response received
+    if(DiagCheckValidRespPrimitive(diag_req))
+    {
+      // toggle dummy::sys_var_1 value to see changes in windows
+      @dummy::sys_var_1 = 1;
+      testWaitForTimeout(500);
+      @dummy::sys_var_1 = 0;
+      testWaitForTimeout(1000);
+      @dummy::sys_var_1 = 1;
+      testWaitForTimeout(500);
+      testStepPass();
+    }
+    else
+    {
+      testStepFail();
+    }
+  }
+  else
+  {
+    testStepFail();
+  }
+  // make sure the windows are available in configuration. also make sure window names are given properly.
+  TestReportAddWindowCapture("Data", "", "Data Window screenshot");
+  TestReportAddWindowCapture("Graphics", "", "Graphics Window screenshot");
+  TestReportAddWindowCapture("CAN Statistics", "", "Data Window screenshot");
+  TestReportAddWindowCapture("Trace", "", "Trace Window screenshot");
+}

@@ -1,0 +1,28 @@
+/*@!Encoding:1252*/
+// How to act and react based on the graphic panel inputs ?
+// in this example dummy::sys_var_1 value will be set to 1 from graphic pannel and output message accordingly
+
+variables
+{
+  // declare message
+  message CAN1::EngineState msg_es;
+}
+
+on sysvar_update dummy::sys_var_1
+{
+  // send message with signal some values if dummy::sys_var_1 value equal to 1
+  if(@this == 1)
+  {
+    // send message
+    msg_es.OnOff = 1;
+    msg_es.EngineSpeed = 1000;
+    output(msg_es);
+  }
+  else
+  {
+    // send message with signal values 0 if dummy::sys_var_1 value equal to 0
+    msg_es.OnOff = 0;
+    msg_es.EngineSpeed = 0;
+    output(msg_es);
+  }
+}

@@ -1,0 +1,14 @@
+/*@!Encoding:1252*/
+// How to send a message manually using a keyboard ?
+
+variables
+{
+  //  declare message
+  message CAN1::EngineState msg_es;
+}
+
+on key 'm'
+{
+  // send message
+  output(msg_es);
+}

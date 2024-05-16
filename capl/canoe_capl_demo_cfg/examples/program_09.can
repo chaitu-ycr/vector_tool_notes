@@ -1,0 +1,37 @@
+/*@!Encoding:1252*/
+// How to execute windows programs from a CAPL program ?
+// sysExecCmd, sysExec
+
+void MainTest ()
+{
+  test_case_001();
+  test_case_002();
+}
+
+testcase test_case_001()
+{
+  char configDir[1024];
+  getAbsFilePath("examples", configDir, elcount(configDir)); 
+  write ("configDir: %s ", configDir);
+  if(sysExecCmd("dir", "/O", configDir) == 1) // show files in "examples" directory. cmd window will be opened.
+  {
+    testStepPass();
+  }
+  else
+  {
+    testStepFail();
+  }
+}
+
+testcase test_case_002()
+{
+  char configDir[1024];
+  if(sysExec("python", "--version") == 1) // executes python version. cmd window wont be opened.
+  {
+    testStepPass();
+  }
+  else
+  {
+    testStepFail();
+  }
+}

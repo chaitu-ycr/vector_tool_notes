@@ -1,0 +1,45 @@
+/*@!Encoding:1252*/
+// How to create a test case to check if a signal value is valid ?
+
+void MainTest ()
+{
+  // intentionally set valid value to EngineSpeed to check whether test case passes
+  @dummy::sys_var_1 = 1;
+  testWaitForTimeout(1000);
+  test_case_001();
+  
+  // intentionally set invalid value to EngineSpeed to check whether test case fails
+  @dummy::sys_var_1 = 0;
+  testWaitForTimeout(1000);
+  test_case_002();
+}
+
+testcase test_case_001()
+{
+  float lower_limit = 500;
+  float upper_limit = 1500;
+  dword signal_timeout_ms = 1000;
+  if(testWaitForSignalInRange(CAN1::Engine::EngineState::EngineSpeed, lower_limit, upper_limit, signal_timeout_ms))
+  {
+    testStepPass();
+  }
+  else
+  {
+    testStepFail();
+  }
+}
+
+testcase test_case_002()
+{
+  float lower_limit = 500;
+  float upper_limit = 1500;
+  dword signal_timeout_ms = 1000;
+  if(testWaitForSignalInRange(CAN1::Engine::EngineState::EngineSpeed, lower_limit, upper_limit, signal_timeout_ms))
+  {
+    testStepPass();
+  }
+  else
+  {
+    testStepFail();
+  }
+}

@@ -1,0 +1,61 @@
+/*@!Encoding:1252*/
+// How to send a diagnostic message ?
+
+void MainTest ()
+{
+  test_case_001();
+  testWaitForTimeout(1000);
+  
+  test_case_002();
+  testWaitForTimeout(1000);
+}
+
+testcase test_case_001()
+{
+  // create diagnostic request
+  diagRequest Door.DefaultSession_Start diag_req;
+  // send diagnostic request
+  diagSendRequest(diag_req);
+  // wait for diagnostic request response
+  if(testWaitForDiagResponse(diag_req, 1000))
+  {
+    // check if valid response received
+    if(DiagCheckValidRespPrimitive(diag_req))
+    {
+      testStepPass();
+    }
+    else
+    {
+      testStepFail();
+    }
+  }
+  else
+  {
+    testStepFail();
+  }
+}
+
+testcase test_case_002()
+{
+  // create diagnostic request
+  diagRequest Door.ProgrammingSession_Start diag_req;
+  // send diagnostic request
+  diagSendRequest(diag_req);
+  // wait for diagnostic request response
+  if(testWaitForDiagResponse(diag_req, 1000))
+  {
+    // check if valid response received
+    if(DiagCheckValidRespPrimitive(diag_req))
+    {
+      testStepPass();
+    }
+    else
+    {
+      testStepFail();
+    }
+  }
+  else
+  {
+    testStepFail();
+  }
+}

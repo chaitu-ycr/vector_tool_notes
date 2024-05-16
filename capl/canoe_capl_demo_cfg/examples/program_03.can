@@ -1,0 +1,26 @@
+/*@!Encoding:1252*/
+// How to send a message based on a system event ?
+
+variables
+{
+  // declare message
+  message CAN1::EngineState msg_es;
+}
+
+on sysvar_update dummy::sys_var_1
+{
+  // send message if dummy::sys_var_1 value equal to 1
+  if(@this == 1)
+  {
+    // send message
+    msg_es.OnOff = 1;
+    msg_es.EngineSpeed = 1000;
+    output(msg_es);
+  }
+}
+
+// press key n to set dummy::sys_var_1 value to 1
+on key 'n'
+{
+  @dummy::sys_var_1 = 1;
+}

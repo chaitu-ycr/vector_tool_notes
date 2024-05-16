@@ -1,0 +1,22 @@
+/*@!Encoding:1252*/
+// How to send a message periodically ?
+
+variables
+{
+  // declare message
+  message CAN1::LightState msg_ls;
+  // declare timer
+  msTimer tmr;
+}
+
+on start
+{
+  // set timer to execute every 1sec(1000 ms).
+  setTimerCyclic(tmr, 1000);
+}
+
+on timer tmr
+{
+  // send message
+  output(msg_ls);
+}
