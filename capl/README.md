@@ -34,22 +34,45 @@
 
 #### Integers
 
-* byte (unsigned, 1 Byte)
-* word (unsigned, 2 Byte)
-* dword (unsigned, 4 Byte)
-* int (signed, 2 Byte)
-* long (signed, 4 Byte)
-* int64 (signed, 8 Byte)
-* qword (unsigned, 8 Byte)
+```c
+// byte (unsigned, 1 Byte)
+byte day;
+
+// word (unsigned, 2 Byte)
+word month;
+
+// dword (unsigned, 4 Byte)
+dword year;
+
+// int (signed, 2 Byte)
+int angle;
+
+// long (signed, 4 Byte)
+long profit_in_bucks;
+
+// int64 (signed, 8 Byte)
+int64 ticks;
+
+// qword (unsigned, 8 Byte)
+qword timestamp;
+```
 
 #### Individual character
 
-* char (1 Byte)
+```c
+// char (1 Byte)
+char key_pressed;
+```
 
 #### Floating point numbers
 
-* float (8 Byte)
-* double (8 Byte)
+```c
+// float (8 Byte)
+float pi_value = 3.14;
+
+// double (8 Byte)
+double stock_value = 5.123456;
+```
 
 ### Self Defined Structures(struct)
 
